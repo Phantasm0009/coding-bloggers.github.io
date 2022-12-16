@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Aditya Tiwari">
+    
+    <title>
+        
+            Building a Music Player in React |
+        
+        Coding blogs
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/v5-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/duotone.min.css">
+
+    
+<link rel="stylesheet" href="/css/brands.min.css">
+
+    
+<link rel="stylesheet" href="/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/css/css2.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"aditya-ti.web.app","root":"/","language":"en"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://evan.beee.top/img/wallhaven-wqery6-light.webp","dark":"https://evan.beee.top/img/wallhaven-wqery6-dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"How was your day? Scroll down for some blogs to read!"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":false,"preload":true},"code_copy":{"enable":true},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"0.3.5"};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+    
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Coding blogs
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               target="_blank" rel="noopener" href="https://coding-bloggers.betteruptime.com/"
+                            >
+                                STATUS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               target="_blank" rel="noopener" href="https://adi-ti.web.app/"
+                            >
+                                PORTFOLIO
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       target="_blank" rel="noopener" href="https://coding-bloggers.betteruptime.com/">STATUS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       target="_blank" rel="noopener" href="https://adi-ti.web.app/">PORTFOLIO</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+            <div class="article-title">
+                <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">Building a Music Player in React</h1></span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Aditya Tiwari</span>
+                            
+                                <span class="author-label">lol</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-duotone fa-pen-line"></i>&nbsp;
+        <span class="pc">2022-12-16 15:06:24</span>
+        <span class="mobile">2022-12-16 15:06</span>
+    </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><a href="#introduction"></a>Introduction</h1><p>Whoever is learning React and wants to build a project with React. There are a variety of blogs and articles to guide a such projects for developers. I do go through those articles but one kind of project is always missing in them. The missing projects are the music player and video player. Both of the projects will give you the opportunity to handle audio and video. You will learn many things such as handling audio for playing and pausing audio.</p>
+<p>Today, we are going to build a music player in React. We will look into the following topics:</p>
+<ul>
+<li>  Setting up the environment</li>
+<li>  Playing/Pausing audio</li>
+<li>  Handling time of audio(In term of current time and complete duration of audio)</li>
+<li>  Adding a range slider for the timeline of audio</li>
+</ul>
+<p>After completing the project, our music player will look like this.</p>
+<p>GIF</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://res.cloudinary.com/practicaldev/image/fetch/s--sHfL5Oxg--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ai4g1rt3oc5y819inkje.gif"
+                      alt="React Music Player"
+                ></p>
+<p>If this excites you then let’s get started.</p>
+<h1 id="Prerequisite-and-Setting-up-the-Environment"><a href="#Prerequisite-and-Setting-up-the-Environment" class="headerlink" title="Prerequisite and Setting up the Environment"></a><a href="#prerequisite-and-setting-up-the-environment"></a>Prerequisite and Setting up the Environment</h1><p>I assume that you have knowledge about the following technologies as prerequisite:</p>
+<ul>
+<li>  JavaScript</li>
+<li>  HTML/CSS</li>
+<li>  Basic React</li>
+</ul>
+<p>The environment setup is easy. You should have <a class="link"   target="_blank" rel="noopener" href="https://nodejs.org/en/" >node.js<i class="fas fa-external-link-alt"></i></a> pre-installed for running the node related command in the terminal.</p>
+<p>Navigate to the directory in which you want to create the project. Now, run the terminal and enter the below command to install react project.  </p>
+<pre><code>npx create-react-app react-music-player
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>Remove all the boilerplate and unnecessary code. We are now good to go.</p>
+<h1 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a><a href="#dependencies"></a>Dependencies</h1><p>We need to install the following libraries to our project:</p>
+<ul>
+<li>  <a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/use-sound" >use-sound<i class="fas fa-external-link-alt"></i></a>: This will handle the audio file. It will load, play, and pause the audio along with other features.</li>
+</ul>
+<p>Install with the below command:  </p>
+<pre><code>npm i use-sound
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<ul>
+<li>  <a class="link"   target="_blank" rel="noopener" href="https://react-icons.github.io/react-icons/" >react-icons<i class="fas fa-external-link-alt"></i></a>: For adding icons of play, pause, next and previous into our player.</li>
+</ul>
+<p>Install it with the below command:  </p>
+<pre><code>npm i react-icons
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<h1 id="Player-js"><a href="#Player-js" class="headerlink" title="Player.js"></a><a href="#playerjs"></a>Player.js</h1><p>Create a <code>component</code> directory in the <code>src</code> folder. Inside that create a component with the name <code>Player.js</code>. This component will be our music player.</p>
+<h2 id="Imports"><a href="#Imports" class="headerlink" title="Imports"></a><a href="#imports"></a>Imports</h2><p>As per the library to import in the file. You can look at it here:  </p>
+<pre><code>import &#123; useEffect, useState &#125; from &quot;react&quot;; 
+import useSound from &quot;use-sound&quot;; // for handling the sound
+import qala from &quot;../assets/qala.mp3&quot;; // importing the music
+import &#123; AiFillPlayCircle, AiFillPauseCircle &#125; from &quot;react-icons/ai&quot;; // icons for play and pause
+import &#123; BiSkipNext, BiSkipPrevious &#125; from &quot;react-icons/bi&quot;; // icons for next and previous track
+import &#123; IconContext &#125; from &quot;react-icons&quot;; // for customazing the icons
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>You can look into comments for the explanation of the imports.</p>
+<h2 id="Playing-and-Pausing-the-audio"><a href="#Playing-and-Pausing-the-audio" class="headerlink" title="Playing and Pausing the audio"></a><a href="#playing-and-pausing-the-audio"></a>Playing and Pausing the audio</h2><p>Let’s implement the mandatory feature of the player which is playing and pausing the audio.</p>
+<p>At the top, we have a <code>isPlaying</code> state for storing the current status of the player. This will be helpful in conditional rendering the play/pause icon according the status of the player.  </p>
+<pre><code>const [isPlaying, setIsPlaying] = useState(false);
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>We need to initialize the <code>useSound</code> with audio. It will return the play, pause, duration, and sound method.  </p>
+<pre><code>const [play, &#123; pause, duration, sound &#125;] = useSound(qala);
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p><code>play</code> and <code>pause</code> is for playing and pausing the audio. <code>duration</code> is for the length of the track in milliseconds. <code>sound</code> will provide us with the <a class="link"   target="_blank" rel="noopener" href="https://github.com/goldfire/howler.js" >howler.js<i class="fas fa-external-link-alt"></i></a> method for the sound.</p>
+<p>Create a function for handling the play and pause buttons. Here is the code for it.  </p>
+<pre><code>  const playingButton = () =&gt; &#123;
+    if (isPlaying) &#123;
+      pause(); // this will pause the audio
+      setIsPlaying(false);
+    &#125; else &#123;
+      play(); // this will play the audio
+      setIsPlaying(true);
+    &#125;
+  &#125;;
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>Now, it’s time to add the UI component of the player into the <code>return</code>. Here is the code for it.  </p>
+<pre><code>  return (
+    &lt;div className=&quot;component&quot;&gt;
+      &lt;h2&gt;Playing Now&lt;/h2&gt;
+      &lt;img
+        className=&quot;musicCover&quot;
+        src=&quot;https://picsum.photos/200/200&quot;
+      /&gt;
+      &lt;div&gt;
+        &lt;h3 className=&quot;title&quot;&gt;Rubaiyyan&lt;/h3&gt;
+        &lt;p className=&quot;subTitle&quot;&gt;Qala&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;button className=&quot;playButton&quot;&gt;
+          &lt;IconContext.Provider value=&#123;&#123; size: "3em", color: "#27AE60" &#125;&#125;&gt;
+            &lt;BiSkipPrevious /&gt;
+          &lt;/IconContext.Provider&gt;
+        &lt;/button&gt;
+        &#123;!isPlaying ? (
+          &lt;button className=&quot;playButton&quot; onClick=&#123;playingButton&#125;&gt;
+            &lt;IconContext.Provider value=&#123;&#123; size: "3em", color: "#27AE60" &#125;&#125;&gt;
+              &lt;AiFillPlayCircle /&gt;
+            &lt;/IconContext.Provider&gt;
+          &lt;/button&gt;
+        ) : (
+          &lt;button className=&quot;playButton&quot; onClick=&#123;playingButton&#125;&gt;
+            &lt;IconContext.Provider value=&#123;&#123; size: "3em", color: "#27AE60" &#125;&#125;&gt;
+              &lt;AiFillPauseCircle /&gt;
+            &lt;/IconContext.Provider&gt;
+          &lt;/button&gt;
+        )&#125;
+        &lt;button className=&quot;playButton&quot;&gt;
+          &lt;IconContext.Provider value=&#123;&#123; size: "3em", color: "#27AE60" &#125;&#125;&gt;
+            &lt;BiSkipNext /&gt;
+          &lt;/IconContext.Provider&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>For the cover image, I have used the <a class="link"   target="_blank" rel="noopener" href="https://picsum.photos/" >Loren Picsum<i class="fas fa-external-link-alt"></i></a> for generating a random image.</p>
+<p>You can look here for the CSS of the file:  </p>
+<pre><code>body &#123;
+  background-color: #e5e5e5;
+&#125;
+
+.App &#123;
+  font-family: sans-serif;
+  text-align: center;
+&#125;
+
+.component &#123;
+  background-color: white;
+  width: 25%;
+  max-width: 600px;
+  margin: 1em auto;
+  padding-bottom: 2em;
+  border: 0.1px solid black;
+  border-radius: 10px;
+&#125;
+
+.musicCover &#123;
+  border-radius: 10%;
+&#125;
+
+.playButton &#123;
+  background: none;
+  border: none;
+  align-items: center;
+  justify-content: center;
+&#125;
+
+.subTitle &#123;
+  margin-top: -1em;
+  color: #4f4f4f;
+&#125;
+
+.track &#123;
+  width: 100%;
+  height: 4px;
+  background: #dddddd;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+&#125;
+.track-inner &#123;
+  width: 0;
+  height: 100%;
+  background: #27ae60;
+&#125;
+
+.time &#123;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  color: #828282;
+  font-size: smaller;
+&#125;
+
+.timeline &#123;
+  width: 80%;
+  background-color: #27ae60;
+&#125;
+
+input[type=&quot;range&quot;] &#123;
+  background-color: #27ae60;
+&#125;
+
+@media (max-width: 900px) &#123;
+  .component &#123;
+    width: 50%;
+  &#125;
+&#125;
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>Run the react server. If everything goes well you will be able to see the below screen.</p>
+<p><a target="_blank" rel="noopener" href="https://res.cloudinary.com/practicaldev/image/fetch/s--DL94VPQb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vi5q1apc13fsx3pcn0cp.png"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://res.cloudinary.com/practicaldev/image/fetch/s--DL94VPQb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vi5q1apc13fsx3pcn0cp.png"
+                      alt="Screenshot - React Music Player"
+                ></a></p>
+<p>Click on the play button to play the audio.</p>
+<h2 id="Adding-audio-timeline-with-the-current-time-and-duration-of-the-audio"><a href="#Adding-audio-timeline-with-the-current-time-and-duration-of-the-audio" class="headerlink" title="Adding audio timeline with the current time and duration of the audio"></a><a href="#adding-audio-timeline-with-the-current-time-and-duration-of-the-audio"></a>Adding audio timeline with the current time and duration of the audio</h2><p>Now, let’s add the timeline to the player. The timeline will controllable by the user. Any changes to it will change the audio’s current position.</p>
+<p>Let’s look into the state that we are using. You see the comments for an explanation of each state.  </p>
+<pre><code>  const [currTime, setCurrTime] = useState(&#123;
+    min: &quot;&quot;,
+    sec: &quot;&quot;,
+  &#125;); // current position of the audio in minutes and seconds
+
+  const [seconds, setSeconds] = useState(); // current position of the audio in seconds
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>We are grabbing the duration props from the <code>useSound</code>. As the duration is provided in milliseconds, we have converted it into minutes and seconds.  </p>
+<pre><code>useEffect(() =&gt; &#123;
+  const sec = duration / 1000;
+  const min = Math.floor(sec / 60);
+  const secRemain = Math.floor(sec % 60);
+  const time = &#123;
+    min: min,
+    sec: secRemain
+  &#125;;
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>Now, for the current position of the audio, we have the <code>sound.seek([])</code> method. We are running this function every second to change the current position of the audio. After getting the position of the audio which is in seconds. We are converting it into minutes and seconds. After converting, we are setting the state with the current value. Here is the code for it.  </p>
+<pre><code>useEffect(() =&gt; &#123;
+    const interval = setInterval(() =&gt; &#123;
+      if (sound) &#123;
+        setSeconds(sound.seek([])); // setting the seconds state with the current state
+        const min = Math.floor(sound.seek([]) / 60);
+        const sec = Math.floor(sound.seek([]) % 60);
+        setCurrTime(&#123;
+          min,
+          sec,
+        &#125;);
+      &#125;
+    &#125;, 1000);
+    return () =&gt; clearInterval(interval);
+  &#125;, [sound]);
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>Now for the return. Here is the code.  </p>
+<pre><code>      &lt;div&gt;
+        &lt;div className=&quot;time&quot;&gt;
+          &lt;p&gt;
+            &#123;currTime.min&#125;:&#123;currTime.sec&#125;
+          &lt;/p&gt;
+          &lt;p&gt;
+            &#123;time.min&#125;:&#123;time.sec&#125;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;input
+          type=&quot;range&quot;
+          min=&quot;0&quot;
+          max=&#123;duration / 1000&#125;
+          default=&quot;0&quot;
+          value=&#123;seconds&#125;
+          className=&quot;timeline&quot;
+          onChange=&#123;(e) =&gt; &#123;
+            sound.seek([e.target.value]);
+          &#125;&#125;
+        /&gt;
+      &lt;/div&gt;
+</code></pre>
+<p>Enter fullscreen mode Exit fullscreen mode</p>
+<p>The value of the range input is the <code>second</code> state. It will provide us with the current position of the audio. On change in the range by the user. We are calling the <code>soud.seek()</code> method to change the current position of the audio.</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a><a href="#output"></a>Output</h1><p>After successfully completing the project, you will be able to see the below output.</p>
+<p>GIF</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://res.cloudinary.com/practicaldev/image/fetch/s--sHfL5Oxg--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ai4g1rt3oc5y819inkje.gif"
+                      alt="Image description"
+                ></p>
+<blockquote>
+<p>Note: The music is coming into my speaker.</p>
+</blockquote>
+<p>I have created a codesandbox. You can look at it for the complete project with code and the output.</p>
+<blockquote>
+<p>Note: The song that I used is <a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=wEkMPeP50Ss" >Rubaaiyaan<i class="fas fa-external-link-alt"></i></a> from Qala. All credit to the creator.</p>
+</blockquote>
+<h1 id="Additional-Features"><a href="#Additional-Features" class="headerlink" title="Additional Features"></a><a href="#additional-features"></a>Additional Features</h1><p>You can work on the music player to add more features such as:</p>
+<ul>
+<li>  It currently plays one song and loads many songs into it. Use the next and the previous icons for changing audio.</li>
+<li>  Change the name and album of the audio as per the song.</li>
+<li>  Add more features that you wish a music player should have.</li>
+</ul>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><a href="#conclusion"></a>Conclusion</h1><p>We have created our own music player. This project will help you in handling audio files in React. We have added features of play and pause with the function. Also added an audio timeline with the range input. Users can change the current position of the audio with the timeline. Feel free to add more features to the project.</p>
+<p>I hope this project has helped you in understanding a method of handling music in React. Let me know in the comment if you want a video player tutorial too. Thanks for reading the blog post.</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Building a Music Player in React</li>
+        <li>Post author：Aditya Tiwari</li>
+        <li>Create time：2022-12-16 15:06:24</li>
+        <li>
+            Post link：https://aditya-ti.web.app/2022/12/16/build/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2022/12/16/Vuejs/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">VueJS vs ReactJS</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>Contents</strong></div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Prerequisite-and-Setting-up-the-Environment"><span class="nav-text">Prerequisite and Setting up the Environment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dependencies"><span class="nav-text">Dependencies</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Player-js"><span class="nav-text">Player.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Imports"><span class="nav-text">Imports</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Playing-and-Pausing-the-audio"><span class="nav-text">Playing and Pausing the audio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-audio-timeline-with-the-current-time-and-duration-of-the-audio"><span class="nav-text">Adding audio timeline with the current time and duration of the audio</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Additional-Features"><span class="nav-text">Additional Features</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol>
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Aditya Tiwari</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v0.3.5</a>
+        </div>
+        
+        
+    </div>
+    <link rel="stylesheet" href="//evan.beee.top/css/waline.css"/>
+    <script src="//evan.beee.top/js/waline.js"></script>
+    
+<link rel="stylesheet" href="/css/regular.min.css">
+
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa-duotone fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
